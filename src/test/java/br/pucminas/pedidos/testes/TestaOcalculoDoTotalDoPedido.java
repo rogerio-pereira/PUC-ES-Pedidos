@@ -21,5 +21,17 @@ public class TestaOcalculoDoTotalDoPedido {
 		pedido.incluiItem(produto1, 2);
 		assertEquals(40.0, pedido.calculaTotal(), 0.01);
 	}
+	
+
+	
+	@Test
+	public void oTotalDoPedidoDeveraRetornarSomaPedidoComDoisItens() {
+		Pedido pedido = new Pedido(1);
+		Produto produto1 =  new Produto(1, "Produto 1", 20.0);
+		Produto produto2 =  new Produto(2, "Produto 2", 10.0);
+		pedido.incluiItem(produto1, 2);
+		pedido.incluiItem(produto2, 1);
+		assertEquals(50.0, pedido.calculaTotal(), 0.01);
+	}
 
 }
