@@ -2,7 +2,9 @@ package br.pucminas.pedidos.testes;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -11,9 +13,15 @@ import br.pucminas.pedidos.dominio.Pedido;
 
 
 public class TestaOcalculoDoTotalDoPedido {
-	private static Produto caneta;
-	private static Produto lapis;
+	private static 	Produto caneta;
+	private static 	Produto lapis;
+	private 		Pedido 	pedido;
 	
+	/*
+	 * -----------------------------------------------------------------------
+	 * CONFIGURAÇÕES DA CLASSE
+	 * -----------------------------------------------------------------------
+	 */
 	@BeforeClass
 	public static void configuraClasseDeTeste()
 	{
@@ -21,20 +29,27 @@ public class TestaOcalculoDoTotalDoPedido {
 		lapis 	= new Produto(2, "Lapis", 1.00);
 	}
 	
+	@Before
+	public void configura()
+	{
+		pedido = new Pedido(0);
+	}
 	
+	
+	/*
+	 * -----------------------------------------------------------------------
+	 * TESTES
+	 * -----------------------------------------------------------------------
+	 */
 	@Test
 	public void oTotalDoPedidoDeveraRetornarZeroParaUmPedidoSemItens() 
 	{
-		Pedido pedido = new Pedido(0);
-		
 		assertEquals(0.0, pedido.calculaTotal(), 0.01);
 	}
 
 	@Test
 	public void oTotalDoPedidoDeveraRetornarUmValorParaUmPedidoCom1Item() 
 	{
-		Pedido 	pedido = new Pedido(0);
-		
 		pedido.incluiItem(caneta, 2);
 		
 		assertEquals(3.0, pedido.calculaTotal(), 0.01);
@@ -43,12 +58,21 @@ public class TestaOcalculoDoTotalDoPedido {
 	@Test
 	public void oTotalDoPedidoDeveraRetornarUmValorParaUmPedidoCom2Itens() 
 	{
-		Pedido 	pedido 	= new Pedido(0);
-
 		pedido.incluiItem(caneta, 2);
 		pedido.incluiItem(lapis, 3);
 
 		assertEquals(6.0, pedido.calculaTotal(), 0.01);
+	}
+	
+	/*
+	 * -----------------------------------------------------------------------
+	 * DESCONFIGURAÇÕES DA CLASSE
+	 * -----------------------------------------------------------------------
+	 */
+	@After
+	public void desconfigura()
+	{
+		pedido = null;
 	}
 	
 	@AfterClass
