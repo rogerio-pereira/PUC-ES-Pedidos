@@ -58,9 +58,9 @@ public class TestaOcalculoDoDescontoDoPedido {
 	@Test
 	public void oTotalDoPedidoDeveraRetornarDescontoDeDoisPorcentoParaPedidosComAteCincoItens() 
 	{
-		pedido.incluiItem(caneta, 2);
-		pedido.incluiItem(lapis, 2);
-		pedido.incluiItem(lapiseira, 2);
+		pedido.incluiItem(caneta, 		2);
+		pedido.incluiItem(lapis, 		2);
+		pedido.incluiItem(lapiseira, 	2);
 
 		assertEquals(0.12, pedido.calculaDesconto(), 0.01);
 	}
@@ -68,14 +68,32 @@ public class TestaOcalculoDoDescontoDoPedido {
 	@Test
 	public void oTotalDoPedidoDeveraRetornarDescontoDeTresEMeioPorcentoParaPedidosComCincoAOitoItens() 
 	{
-		pedido.incluiItem(caneta, 2);
-		pedido.incluiItem(lapis, 2);
-		pedido.incluiItem(lapiseira, 2);
-		pedido.incluiItem(regua, 2);
-		pedido.incluiItem(borracha, 2);
-		pedido.incluiItem(apontador, 2);
+		pedido.incluiItem(caneta, 		2);
+		pedido.incluiItem(lapis, 		2);
+		pedido.incluiItem(lapiseira, 	2);
+		pedido.incluiItem(regua, 		2);
+		pedido.incluiItem(borracha, 	2);
+		pedido.incluiItem(apontador, 	2);
 
 		assertEquals(0.42, pedido.calculaDesconto(), 0.01);
+	}
+	
+
+
+	@Test
+	public void oTotalDoPedidoDeveraRetornarDescontoDeCincoPorcentoParaPedidosComMaisDeOitoItens() 
+	{
+		pedido.incluiItem(caneta, 		2);
+		pedido.incluiItem(lapis, 		2);
+		pedido.incluiItem(lapiseira, 	2);
+		pedido.incluiItem(regua, 		2);
+		pedido.incluiItem(borracha, 	2);
+		pedido.incluiItem(apontador, 	2);
+		pedido.incluiItem(grafite, 		2);
+		pedido.incluiItem(estojo, 		2);
+		pedido.incluiItem(caderno, 		2);
+
+		assertEquals(0.9, pedido.calculaDesconto(), 0.01);
 	}
 	
 	
@@ -93,7 +111,14 @@ public class TestaOcalculoDoDescontoDoPedido {
 	@AfterClass
 	public static void desconfiguraClasseDeTeste()
 	{
-		caneta 	= null;
-		lapis 	= null;
+		caneta 		= null;
+		lapis 		= null;
+		lapiseira	= null;
+		regua		= null;
+		borracha	= null;
+		apontador	= null;
+		grafite		= null;
+		estojo		= null;
+		caderno		= null;
 	}
 }
