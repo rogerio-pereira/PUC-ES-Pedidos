@@ -64,6 +64,19 @@ public class TestaOcalculoDoDescontoDoPedido {
 
 		assertEquals(0.12, pedido.calculaDesconto(), 0.01);
 	}
+
+	@Test
+	public void oTotalDoPedidoDeveraRetornarDescontoDeTresEMeioPorcentoParaPedidosComCincoAOitoItens() 
+	{
+		pedido.incluiItem(caneta, 2);
+		pedido.incluiItem(lapis, 2);
+		pedido.incluiItem(lapiseira, 2);
+		pedido.incluiItem(regua, 2);
+		pedido.incluiItem(borracha, 2);
+		pedido.incluiItem(apontador, 2);
+
+		assertEquals(0.42, pedido.calculaDesconto(), 0.01);
+	}
 	
 	
 	/*
