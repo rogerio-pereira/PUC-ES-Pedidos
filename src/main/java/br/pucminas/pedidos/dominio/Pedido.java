@@ -26,6 +26,22 @@ public class Pedido {
 		}
 		return total;
 	}
+	
+	//2% de desconto para 5 itens
+	//3.5% para pedidos entre 5 e 8 itens
+	//5% para pedidos com mais de 8 itens
+	public double calculaDesconto()
+	{
+		int total = itensDoPedido.size();
+		
+		if(total < 5)
+			return calculaTotal() * 0.02;
+		else if(total > 8)
+			return calculaTotal() * 0.05;
+		else
+			return calculaTotal() * 0.035;	
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("Pedido %03d# data=%2$te/%2$tm/%2$tY", this.numero,
